@@ -101,7 +101,7 @@ module Sorcerer
           resource(sexp[2])     # Statements
         end
         if !void?(sexp[2])
-          soft_newline
+          soft_newline unless sexp[2].first == :bodystmt
         else
           emit(" ")
         end

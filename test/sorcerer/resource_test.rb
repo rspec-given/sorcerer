@@ -105,7 +105,11 @@ class ResourceTest < Test::Unit::TestCase
     assert_resource "obj.meth &code"
     assert_resource "obj.meth a, &code"
     assert_resource "obj.meth a, *args, &code"
-    assert_resource "obj.meth a, *args do |x| x.y end"
+    if RUBY_VERSION >= "2.5"
+      assert_resource "obj.meth a, *args do |x| x.y; end"
+    else
+      assert_resource "obj.meth a, *args do |x| x.y end"
+    end
   end
 
   def test_can_source_method_called_with_scope_op_without_parans
@@ -154,7 +158,11 @@ class ResourceTest < Test::Unit::TestCase
     assert_resource "meth &code"
     assert_resource "meth a, &code"
     assert_resource "meth a, *args, &code"
-    assert_resource "meth a, *args do |x| x.y end"
+    if RUBY_VERSION >= "2.5"
+      assert_resource "meth a, *args do |x| x.y; end"
+    else
+      assert_resource "meth a, *args do |x| x.y end"
+    end
   end
 
   def test_can_source_method_with_bare_assoc
@@ -175,7 +183,11 @@ class ResourceTest < Test::Unit::TestCase
   def test_can_source_method_with_do_block
     assert_resource_lines "meth do end"
     assert_resource_lines "meth do |a| end"
-    assert_resource_lines "meth(x, y, *rest, &code) do |a, b=1, c=x, *args, &block|~#one; #two; #three~end"
+    if RUBY_VERSION >= "2.5"
+      assert_resource_lines "meth(x, y, *rest, &code) do |a, b=1, c=x, *args, &block|~#one; #two; #three;~end"
+    else
+      assert_resource_lines "meth(x, y, *rest, &code) do |a, b=1, c=x, *args, &block|~#one; #two; #three~end"
+    end
   end
 
   def test_can_source_method_with_block

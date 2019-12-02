@@ -61,7 +61,7 @@ module AssertResource
     string.
       gsub(/\b THEN~/, "; ").
       gsub(/~/, "\n").
-      gsub(/; /, "\n").
+      gsub(/;\s+/, "\n").
       gsub(/#/,'') + "\n"
   end
 
@@ -69,7 +69,7 @@ module AssertResource
     string.
       gsub(/\b THEN~/, "; ").
       gsub(/~/, "\n").
-      gsub(/; /, "\n").
+      gsub(/;\s+/, "\n").
       gsub(/#/,'  ') + "\n"
   end
 
