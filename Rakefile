@@ -61,10 +61,10 @@ else
     s.has_rdoc = true
     s.extra_rdoc_files = RDOC_FILES.reject { |fn| fn =~ /\.rb$/ }.to_a
     s.rdoc_options = BASE_RDOC_OPTIONS
-    s.author = "Jim Weirich"
-    s.email = "jim.weirich@gmail.com"
+    s.authors = ["Jim Weirich", "Justin Searls"]
+    s.email = ["jim.weirich@gmail.com", "searls@gmail.com"]
     s.rubyforge_project = 'sorcerer'
-    s.homepage = "http://github.com/jimweirich/sorcerer"
+    s.homepage = "http://github.com/rspec-given/sorcerer"
   end
 
   package_task = Gem::PackageTask.new(SPEC) do |pkg|

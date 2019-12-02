@@ -2,29 +2,29 @@
 
 | Master |
 | :----: |
-| [![Master Build Status](https://secure.travis-ci.org/jimweirich/sorcerer.png?branch=master)](https://secure.travis-ci.org/jimweirich/sorcerer) |
+| [![Master Build Status](https://secure.travis-ci.org/rspec-given/sorcerer.png?branch=master)](https://secure.travis-ci.org/rspec-given/sorcerer) |
 
 Sorcerer will generate Ruby code from a Ripper-like abstract syntax
 tree (i.e. S-Expressions).
 
-Sorcerer is targetted mainly at small snippets of Ruby code,
+Sorcerer is targeted mainly at small snippets of Ruby code,
 expressable in a single line. Longer examples may be re-sourced, but
 they will be rendered in a single line format.
 
-**Version: 1.0.0**
+**Version: 2.0.0**
 
 ## Limitations
 
-Sorcerer is only tested on Ruby 1.9 and 2.0.
+Sorcerer only supports Ruby 2.0 & up.
 
 ## Links
 
 | Description            | Link |
 | :---:                  | :---: |
-| Documents              | http://github.com/jimweirich/sorcerer |
-| Git Clone              | git://github.com/jimweirich/sorcerer.git |
-| Issues / Bug Tracking  | https://github.com/jimweirich/sorcerer/issues |
-| Continuous Integration | http://travis-ci.org/#!/jimweirich/sorcerer |
+| Documents              | http://github.com/rspec-given/sorcerer |
+| Git Clone              | git://github.com/rspec-given/sorcerer.git |
+| Issues / Bug Tracking  | https://github.com/rspec-given/sorcerer/issues |
+| Continuous Integration | http://travis-ci.org/#!/rspec-given/sorcerer |
 
 ## Examples
 
@@ -129,6 +129,9 @@ Sorcerer is available under the terms of the MIT license. See the
 MIT-LICENSE file for details.
 
 ## History
+
+* 2.0.0 - Fix several bugs introduced by changes to ripper under 2.5 & 2.6, drop
+          1.9.3 support
 
 * 1.0.2 - Fix bug in interpolated regular expression resourcing.
 
