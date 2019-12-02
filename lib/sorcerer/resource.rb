@@ -186,7 +186,7 @@ module Sorcerer
       if sig.opts_arg
         first = emit_separator(", ", first)
         emit("**")
-        emit(sig.opts_arg[1])
+        DOESNT_WRAP_OPTS_ARG_IN_KWREST_PARAM ? emit(sig.opts_arg[1]) : resource(sig.opts_arg[1])
       end
       if sig.block_arg
         first = emit_separator(", ", first)
@@ -296,6 +296,8 @@ module Sorcerer
     # as opposed to raw strings
     # See: https://github.com/rspec-given/sorcerer/pull/1
     TREATS_MORE_PERIODS_AS_TEXT = RUBY_VERSION < '2.6'
+
+    DOESNT_WRAP_OPTS_ARG_IN_KWREST_PARAM = RUBY_VERSION < '2.5'
 
     HANDLERS = {
       # parser keywords
