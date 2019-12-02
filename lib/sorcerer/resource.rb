@@ -292,12 +292,16 @@ module Sorcerer
     MISSES_ARRAY_NODE_FOR_WORDS = RUBY_VERSION < '1.9.2' ||
       (RUBY_VERSION == '1.9.2' && RUBY_PATCHLEVEL < 320)
 
+    RUBY_MAJOR, RUBY_MINOR, RUBY_PATCH = RUBY_VERSION.split('.').map(&:to_i)
+
+    # As of 2.5, Ripper started wrapping **opts rest keyword args in a
+    # :kwrest_param s-expression
+    DOESNT_WRAP_OPTS_ARG_IN_KWREST_PARAM = RUBY_MAJOR < 2 || (RUBY_MAJOR == 2 && RUBY_MINOR < 5)
+
     # As of 2.6, Ripper parses the period in fields and calls as s-expressions
     # as opposed to raw strings
     # See: https://github.com/rspec-given/sorcerer/pull/1
-    TREATS_MORE_PERIODS_AS_TEXT = RUBY_VERSION < '2.6'
-
-    DOESNT_WRAP_OPTS_ARG_IN_KWREST_PARAM = RUBY_VERSION < '2.5'
+    TREATS_MORE_PERIODS_AS_TEXT = RUBY_MAJOR < 2 || (RUBY_MAJOR == 2 && RUBY_MINOR < 6)
 
     HANDLERS = {
       # parser keywords
