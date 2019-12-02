@@ -292,6 +292,11 @@ module Sorcerer
     MISSES_ARRAY_NODE_FOR_WORDS = RUBY_VERSION < '1.9.2' ||
       (RUBY_VERSION == '1.9.2' && RUBY_PATCHLEVEL < 320)
 
+    # As of 2.6, Ripper parses the period in fields and calls as s-expressions
+    # as opposed to raw strings
+    # See: https://github.com/rspec-given/sorcerer/pull/1
+    TREATS_MORE_PERIODS_AS_TEXT = RUBY_VERSION < '2.6'
+
     HANDLERS = {
       # parser keywords
 
@@ -460,7 +465,7 @@ module Sorcerer
       },
       :call => lambda { |sexp|
         resource(sexp[1])
-        sexp?(sexp[2]) ? resource(sexp[2]) : emit(sexp[2])
+        TREATS_MORE_PERIODS_AS_TEXT ? emit(sexp[2]) : resource(sexp[2])
         resource(sexp[3]) unless sexp[3] == :call
       },
       :case => lambda { |sexp|
@@ -582,7 +587,7 @@ module Sorcerer
       :fcall => PASS1,
       :field => lambda { |sexp|
         resource(sexp[1])
-        emit(sexp[2])
+        TREATS_MORE_PERIODS_AS_TEXT ? emit(sexp[2]) : resource(sexp[2])
         resource(sexp[3])
       },
       :for => lambda { |sexp|
