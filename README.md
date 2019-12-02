@@ -11,7 +11,7 @@ Sorcerer is targeted mainly at small snippets of Ruby code,
 expressable in a single line. Longer examples may be re-sourced, but
 they will be rendered in a single line format.
 
-**Version: 2.0.0**
+**Version: 2.0.1**
 
 ## Limitations
 
@@ -129,6 +129,9 @@ Sorcerer is available under the terms of the MIT license. See the
 MIT-LICENSE file for details.
 
 ## History
+
+* 2.0.1 - Publish the gem with updated contact info in case 2.0.0 breaks for
+          anyone and they go looking at Jim's old repo
 
 * 2.0.0 - Fix several bugs introduced by changes to ripper under 2.5 & 2.6, drop
           1.9.3 support
