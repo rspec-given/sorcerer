@@ -471,7 +471,7 @@ module Sorcerer
       },
       :call => lambda { |sexp|
         resource(sexp[1])
-        TREATS_MORE_PERIODS_AS_TEXT ? emit(sexp[2]) : resource(sexp[2])
+        TREATS_MORE_PERIODS_AS_TEXT || !sexp?(sexp[2]) ? emit(sexp[2]) : resource(sexp[2])
         resource(sexp[3]) unless sexp[3] == :call
       },
       :case => lambda { |sexp|
@@ -508,7 +508,7 @@ module Sorcerer
       },
       :command_call => lambda { |sexp|
         resource(sexp[1])
-        emit(sexp[2])
+        TREATS_MORE_PERIODS_AS_TEXT || !sexp?(sexp[2]) ? emit(sexp[2]) : resource(sexp[2])
         resource(sexp[3])
         emit(" ")
         resource(sexp[4])
@@ -593,7 +593,7 @@ module Sorcerer
       :fcall => PASS1,
       :field => lambda { |sexp|
         resource(sexp[1])
-        TREATS_MORE_PERIODS_AS_TEXT ? emit(sexp[2]) : resource(sexp[2])
+        TREATS_MORE_PERIODS_AS_TEXT || !sexp?(sexp[2]) ? emit(sexp[2]) : resource(sexp[2])
         resource(sexp[3])
       },
       :for => lambda { |sexp|
